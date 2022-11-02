@@ -8,9 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private Button logout;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+    //Assets
+    private FloatingActionButton fab;
+
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
@@ -38,6 +43,25 @@ public class MainActivity extends AppCompatActivity {
         logout = findViewById(R.id.signOut);
         greetings = findViewById(R.id.greeting);
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText input = findViewById(R.id.input);
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(),
+                                FirebaseAuth.getInstance()
+                                        .getCurrentUser()
+                                        .getDisplayName())
+                        );
+
+                // Clear the input
+                input.setText("");
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
                         String age = userChat.age;
 
                         greetings.setText("Welcome, " + fullname + "!");
+                        displayChatMessages();
                     }
+                }
+
+                private void displayChatMessages() {
                 }
 
                 @Override
