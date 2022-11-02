@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
 
     private FirebaseUser user;
+
+
     private FirebaseUser currentUser;
     private DatabaseReference reference;
     private String userID;
@@ -53,6 +55,24 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
 
         fab = findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText input = findViewById(R.id.input);
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(),
+                                FirebaseAuth.getInstance()
+                                        .getCurrentUser()
+                                        .getDisplayName())
+                        );
+
+                // Clear the input
+                input.setText("");
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,23 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    EditText input = findViewById(R.id.input);
-                    FirebaseDatabase.getInstance()
-                            .getReference()
-                            .push()
-                            .setValue(new ChatMessage(input.getText().toString(),
-                                    FirebaseAuth.getInstance()
-                                            .getCurrentUser()
-                                            .getDisplayName())
-                            );
-
-                    // Clear the input
-                    input.setText("");
-                }
-            });
+            displayChatMessages();
 
             user = FirebaseAuth.getInstance().getCurrentUser();
             reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -103,35 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         String age = userChat.age;
 
                         greetings.setText("Welcome, " + fullname + "!");
-                        displayChatMessages();
                     }
-                }
-
-                private void displayChatMessages() {
-                    ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
-
-                    FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                            .setQuery(FirebaseDatabase.getInstance().getReference(), ChatMessage.class).setLayout(R.layout.message).build();
-
-//                    adapter.startListening();
-                    adapter = new FirebaseListAdapter<ChatMessage>(options) {
-                        @Override
-                        protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
-                            TextView messageText = (TextView)v.findViewById(R.id.message_text);
-                            TextView messageUser = (TextView)v.findViewById(R.id.message_user);
-                            TextView messageTime = (TextView)v.findViewById(R.id.message_time);
-
-                            // Set their text
-                            messageText.setText(model.getMessageText());
-                            messageUser.setText(model.getMessageUser());
-
-                            // Format the date before showing it
-                            messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
-                                    model.getMessageTime()));
-                        }
-                    };
-
-                    listOfMessages.setAdapter(adapter);
                 }
 
                 @Override
@@ -142,18 +118,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if (currentUser != null) {
-//            adapter.startListening();
-//        }
-//    }
-//
-//    protected void onStop() {
-//        super.onStop();
-//        if (currentUser != null) {
-//            adapter.stopListening();
-//        }
-//    }
+    private void displayChatMessages() {
+        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
+
+        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
+                .setQuery(FirebaseDatabase.getInstance().getReference(), ChatMessage.class).setLayout(R.layout.message).build();
+
+//                    adapter.startListening();
+        adapter = new FirebaseListAdapter<ChatMessage>(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
+                TextView messageText = (TextView)v.findViewById(R.id.message_text);
+                TextView messageUser = (TextView)v.findViewById(R.id.message_user);
+                TextView messageTime = (TextView)v.findViewById(R.id.message_time);
+
+                // Set their text
+                messageText.setText(model.getMessageText());
+                messageUser.setText(model.getMessageUser());
+
+                // Format the date before showing it
+                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                        model.getMessageTime()));
+            }
+        };
+
+        listOfMessages.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (currentUser != null) {
+            adapter.startListening();
+        }
+    }
+
+    protected void onStop() {
+        super.onStop();
+        if (currentUser != null) {
+            adapter.stopListening();
+        }
+    }
 }

@@ -9,7 +9,6 @@
         android:layout_alignParentStart="true"
         android:id="@+id/message_user"
         android:textColor="@color/black"
-        android:hint="right here"
         android:textStyle="normal|bold" />
 
     <TextView
@@ -18,7 +17,6 @@
         android:layout_alignBottom="@+id/message_user"
         android:layout_alignParentEnd="true"
         android:textColor="@color/black"
-        android:hint="over here"
         android:id="@+id/message_time" />
 
     <TextView
@@ -26,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/message_user"
         android:layout_alignParentStart="true"
-        android:hint="overhere"
         android:layout_marginTop="5dp"
         android:id="@+id/message_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
