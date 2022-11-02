@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView greetings;
     private Button logout;
+
+    //Firebase
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseListAdapter<ChatMessage> adapter;
 
     //Assets
     private FloatingActionButton fab;
 
     private FirebaseUser user;
+    private FirebaseUser currentUser;
     private DatabaseReference reference;
     private String userID;
 
@@ -42,26 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         logout = findViewById(R.id.signOut);
         greetings = findViewById(R.id.greeting);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText input = findViewById(R.id.input);
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .push()
-                        .setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance()
-                                        .getCurrentUser()
-                                        .getDisplayName())
-                        );
-
-                // Clear the input
-                input.setText("");
-            }
-        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +71,24 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText input = findViewById(R.id.input);
+                    FirebaseDatabase.getInstance()
+                            .getReference()
+                            .push()
+                            .setValue(new ChatMessage(input.getText().toString(),
+                                    FirebaseAuth.getInstance()
+                                            .getCurrentUser()
+                                            .getDisplayName())
+                            );
+
+                    // Clear the input
+                    input.setText("");
+                }
+            });
+
             user = FirebaseAuth.getInstance().getCurrentUser();
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();
@@ -99,6 +108,30 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 private void displayChatMessages() {
+                    ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
+
+                    FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference(), ChatMessage.class).setLayout(R.layout.message).build();
+
+//                    adapter.startListening();
+                    adapter = new FirebaseListAdapter<ChatMessage>(options) {
+                        @Override
+                        protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
+                            TextView messageText = (TextView)v.findViewById(R.id.message_text);
+                            TextView messageUser = (TextView)v.findViewById(R.id.message_user);
+                            TextView messageTime = (TextView)v.findViewById(R.id.message_time);
+
+                            // Set their text
+                            messageText.setText(model.getMessageText());
+                            messageUser.setText(model.getMessageUser());
+
+                            // Format the date before showing it
+                            messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                                    model.getMessageTime()));
+                        }
+                    };
+
+                    listOfMessages.setAdapter(adapter);
                 }
 
                 @Override
@@ -108,4 +141,19 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (currentUser != null) {
+//            adapter.startListening();
+//        }
+//    }
+//
+//    protected void onStop() {
+//        super.onStop();
+//        if (currentUser != null) {
+//            adapter.stopListening();
+//        }
+//    }
 }
