@@ -1,67 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".RegistrationActivity">
+    tools:context=".RegistrationActivity"
+    android:background="@color/blue_Frats">
 
-    <!-- TextView for heading -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register" />
-
-    <EditText
-        android:id="@+id/fullname"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Full Name" />
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Age" />
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Email" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- Edit text for password -->
-    <EditText
-        android:id="@+id/passwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your Password"
-        android:inputType="textPassword" />
+        <!-- TextView for heading -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <!-- Button for register with text "Register" -->
-    <Button
-        android:id="@+id/btnregister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:text="Frater Sodalis Register"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-    <!-- ProgressBar for loading time -->
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/alreadyRegistered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="50dp"
-        android:text="Already Registered? Login" />
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_edit_text_cut"
+            android:drawableStart="@drawable/custom_name_icon"
+            android:drawablePadding="12dp"
+            android:hint="Full Name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_edit_text_cut"
+            android:drawableStart="@drawable/custom_age_icon"
+            android:drawablePadding="12dp"
+            android:textColor="@color/white"
+            android:hint="Age"
+            android:textColorHint="@color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:inputType="number"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_edit_text_cut"
+            android:drawableStart="@drawable/custom_mail_icon"
+            android:drawablePadding="12dp"
+            android:textColor="@color/white"
+            android:hint="Email"
+            android:textColorHint="@color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/passwd"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_edit_text_cut"
+            android:drawableStart="@drawable/custom_password_icon"
+            android:drawablePadding="12dp"
+            android:textColor="@color/white"
+            android:hint="Password"
+            android:textColorHint="@color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"/>
+
+        <!--    <EditText-->
+        <!--        android:id="@+id/fullname"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:hint="Enter your Full Name" />-->
+        <!--    <EditText-->
+        <!--        android:id="@+id/age"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:hint="Enter your Age" />-->
+        <!--    <EditText-->
+        <!--        android:id="@+id/email"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:hint="Enter your Email" />-->
+
+        <!-- Edit text for password -->
+        <!--    <EditText-->
+        <!--        android:id="@+id/passwd"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:hint="Enter your Password"-->
+        <!--        android:inputType="textPassword" />-->
+
+        <!-- Button for register with text "Register" -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnregister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_shape"
+            android:layout_marginTop="20dp"
+            android:text="Register" />
+
+        <!-- ProgressBar for loading time -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/alreadyRegistered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:gravity="center"
+                android:text="@string/login_Now"
+                android:layout_marginTop="20dp"/>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+        <!--    <TextView-->
+        <!--        android:id="@+id/alreadyRegistered"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:textSize="20sp"-->
+        <!--        android:textStyle="bold"-->
+        <!--        android:layout_marginTop="25dp"-->
+        <!--        android:layout_marginLeft="50dp"-->
+        <!--        android:text="@string/login_Now" />-->
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

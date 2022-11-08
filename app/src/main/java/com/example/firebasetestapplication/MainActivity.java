@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.settings:
                     break;
                 case R.id.news:
-                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
-//                    replaceFragment(new NewsFragment());
+//                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
+                    replaceFragment(new NewsFragment());
             }
             return true;
         });
