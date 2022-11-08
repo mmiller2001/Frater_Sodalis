@@ -2,6 +2,9 @@ package com.example.firebasetestapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.firebasetestapplication.databinding.ActivityMainBinding;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseListAdapter<ChatMessage> adapter;
 
+    // Binding
+    ActivityMainBinding binding;
+
     //Assets
     private FloatingActionButton fab;
 
@@ -48,7 +55,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            switch (item.getItemId()) {
+                case R.id.home:
+                    break;
+                case R.id.profile:
+                    break;
+                case R.id.settings:
+                    break;
+                case R.id.news:
+                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
+//                    replaceFragment(new NewsFragment());
+            }
+            return true;
+        });
 
         logout = findViewById(R.id.signOut);
         greetings = findViewById(R.id.greeting);
@@ -118,6 +142,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void replaceFragment(Fragment fragment) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+
     private void displayChatMessages() {
         ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
 
@@ -137,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 messageUser.setText(model.getMessageUser());
 
                 // Format the date before showing it
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                messageTime.setText(DateFormat.format("(HH:mm:ss)",
                         model.getMessageTime()));
             }
         };

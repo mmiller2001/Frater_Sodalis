@@ -4,21 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:orientation="vertical"
+    android:background="@color/blue_Frats"
     android:padding="15dp"
     tools:context=".LoginActivity">
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/white"
+        android:layout_marginStart="150dp"
+        android:textSize="20dp"
         android:text="Login"/>
+
 
     <!-- Edit text for email -->
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="20dp"
         android:hint="Enter your Email" />
 
     <!-- Edit text for password -->
@@ -26,14 +35,19 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="10dp"
         android:hint="Enter your Password"
         android:inputType="textPassword" />
 
     <!-- Button for Login with text "Login" -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="match_parent"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button_shape"
         android:text="Login" />
 
     <!-- ProgressBar for Loading Time -->
@@ -49,8 +63,16 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="50dp"
         android:text="Don't have an account? Register " />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/frats_color" />
 
 </LinearLayout>
