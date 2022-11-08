@@ -37,9 +37,26 @@
         android:drawableStart="@drawable/custom_mail_icon"
         android:drawablePadding="12dp"
         android:hint="Email"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp" />
+        android:paddingEnd="12dp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_edit_text_cut"
+        android:drawableStart="@drawable/custom_password_icon"
+        android:drawablePadding="12dp"
+        android:textColor="@color/white"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"/>
 <!--    <EditText-->
 <!--        android:id="@+id/email"-->
 <!--        android:layout_width="match_parent"-->
@@ -52,15 +69,15 @@
 <!--        android:hint="Enter your Email" />-->
 
     <!-- Edit text for password -->
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_marginTop="10dp"
-        android:hint="Enter your Password"
-        android:inputType="textPassword" />
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textColorHint="@color/white"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:hint="Enter your Password"-->
+<!--        android:inputType="textPassword" />-->
 
     <!-- Button for Login with text "Login" -->
     <androidx.appcompat.widget.AppCompatButton
@@ -69,10 +86,10 @@
         android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button_shape"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:textStyle="bold"
-        android:text="Login" />
+        android:text="Login"
+        android:layout_marginTop="20dp"/>
 
     <!-- ProgressBar for Loading Time -->
     <ProgressBar
@@ -94,7 +111,8 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:gravity="center"
-            android:text="Don't have an account? Register now! " />
+            android:text="Don't have an account? Register now! "
+            android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
 
