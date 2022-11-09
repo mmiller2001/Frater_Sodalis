@@ -17,74 +17,74 @@
         app:layout_constraintTop_toTopOf="parent">
 
 <!--        This is the content of the app-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-                <Button
-                    android:id="@+id/signOut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:textSize="20sp"
-                    android:layout_alignParentRight="true" />
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            >-->
+<!--                <Button-->
+<!--                    android:id="@+id/signOut"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Logout"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_alignParentRight="true" />-->
 
-                <TextView
-                    android:id="@+id/greeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Greetings + "
-                    android:layout_marginTop="80dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:layout_alignParentRight="true"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/greeting"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Greetings + "-->
+<!--                    android:layout_marginTop="80dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_alignParentRight="true"/>-->
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:src="@drawable/ic_baseline_arrow_forward_24"
-                    android:id="@+id/fab"
-                    android:tint="@android:color/white"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    app:fabSize="mini" />
+<!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:clickable="true"-->
+<!--                    android:src="@drawable/ic_baseline_arrow_forward_24"-->
+<!--                    android:id="@+id/fab"-->
+<!--                    android:tint="@android:color/white"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    app:fabSize="mini" />-->
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/fab"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true" />
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toLeftOf="@id/fab"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_alignParentStart="true" />-->
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/fab"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toLeftOf="@id/fab"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_alignParentStart="true">-->
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Input"
-                        android:id="@+id/input"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                    <EditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="Input"-->
+<!--                        android:id="@+id/input"-->
+<!--                        />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_above="@id/fab"
-                    android:dividerHeight="16dp"
-                    android:divider="@android:color/transparent"
-                    android:id="@+id/list_of_messages"
-                    android:layout_marginBottom="16dp"/>
+<!--                <ListView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_above="@id/fab"-->
+<!--                    android:dividerHeight="16dp"-->
+<!--                    android:divider="@android:color/transparent"-->
+<!--                    android:id="@+id/list_of_messages"-->
+<!--                    android:layout_marginBottom="16dp"/>-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
     </FrameLayout>
 

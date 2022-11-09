@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     //Firebase
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseListAdapter<ChatMessage> adapter;
+    private FirebaseUser user;
+    private FirebaseUser currentUser;
+    private DatabaseReference reference;
 
     // Binding
     ActivityMainBinding binding;
@@ -44,11 +47,6 @@ public class MainActivity extends AppCompatActivity {
     //Assets
     private FloatingActionButton fab;
 
-    private FirebaseUser user;
-
-
-    private FirebaseUser currentUser;
-    private DatabaseReference reference;
     private String userID;
 
     @SuppressLint("MissingInflatedId")
@@ -57,12 +55,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.home:
-                    break;
+                    replaceFragment(new HomeFragment());
                 case R.id.profile:
                     break;
                 case R.id.settings:
@@ -74,72 +73,72 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        logout = findViewById(R.id.signOut);
-        greetings = findViewById(R.id.greeting);
+//        logout = findViewById(R.id.signOut);
+//        greetings = findViewById(R.id.greeting);
         currentUser = mAuth.getCurrentUser();
 
-        fab = findViewById(R.id.fab);
+//        fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText input = findViewById(R.id.input);
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .push()
-                        .setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance()
-                                        .getCurrentUser()
-                                        .getDisplayName())
-                        );
-
-                // Clear the input
-                input.setText("");
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
-
-        if (currentUser == null)
-        {
-            Intent intent
-                    = new Intent(MainActivity.this,
-                    LoginActivity.class);
-            startActivity(intent);
-        }
-        else
-        {
-            displayChatMessages();
-
-            user = FirebaseAuth.getInstance().getCurrentUser();
-            reference = FirebaseDatabase.getInstance().getReference("Users");
-            userID = user.getUid();
-
-            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    User userChat = snapshot.getValue(User.class);
-                    if(userChat != null) {
-                        String fullname = userChat.fullName;
-                        String email = userChat.email;
-                        String age = userChat.age;
-
-                        greetings.setText("Welcome, " + fullname + "!");
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(MainActivity.this, "Something did not go right!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditText input = findViewById(R.id.input);
+//                FirebaseDatabase.getInstance()
+//                        .getReference()
+//                        .push()
+//                        .setValue(new ChatMessage(input.getText().toString(),
+//                                FirebaseAuth.getInstance()
+//                                        .getCurrentUser()
+//                                        .getDisplayName())
+//                        );
+//
+//                // Clear the input
+//                input.setText("");
+//            }
+//        });
+//
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth.getInstance().signOut();
+//                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//            }
+//        });
+//
+//        if (currentUser == null)
+//        {
+//            Intent intent
+//                    = new Intent(MainActivity.this,
+//                    LoginActivity.class);
+//            startActivity(intent);
+//        }
+//        else
+//        {
+//            displayChatMessages();
+//
+//            user = FirebaseAuth.getInstance().getCurrentUser();
+//            reference = FirebaseDatabase.getInstance().getReference("Users");
+//            userID = user.getUid();
+//
+//            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    User userChat = snapshot.getValue(User.class);
+//                    if(userChat != null) {
+//                        String fullname = userChat.fullName;
+//                        String email = userChat.email;
+//                        String age = userChat.age;
+//
+//                        greetings.setText("Welcome, " + fullname + "!");
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    Toast.makeText(MainActivity.this, "Something did not go right!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -150,32 +149,32 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void displayChatMessages() {
-        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
-
-        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                .setQuery(FirebaseDatabase.getInstance().getReference(), ChatMessage.class).setLayout(R.layout.message).build();
-
-//                    adapter.startListening();
-        adapter = new FirebaseListAdapter<ChatMessage>(options) {
-            @Override
-            protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
-                TextView messageText = (TextView)v.findViewById(R.id.message_text);
-                TextView messageUser = (TextView)v.findViewById(R.id.message_user);
-                TextView messageTime = (TextView)v.findViewById(R.id.message_time);
-
-                // Set their text
-                messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
-
-                // Format the date before showing it
-                messageTime.setText(DateFormat.format("(HH:mm:ss)",
-                        model.getMessageTime()));
-            }
-        };
-
-        listOfMessages.setAdapter(adapter);
-    }
+//    private void displayChatMessages() {
+//        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
+//
+//        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
+//                .setQuery(FirebaseDatabase.getInstance().getReference(), ChatMessage.class).setLayout(R.layout.message).build();
+//
+////                    adapter.startListening();
+//        adapter = new FirebaseListAdapter<ChatMessage>(options) {
+//            @Override
+//            protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
+//                TextView messageText = (TextView)v.findViewById(R.id.message_text);
+//                TextView messageUser = (TextView)v.findViewById(R.id.message_user);
+//                TextView messageTime = (TextView)v.findViewById(R.id.message_time);
+//
+//                // Set their text
+//                messageText.setText(model.getMessageText());
+//                messageUser.setText(model.getMessageUser());
+//
+//                // Format the date before showing it
+//                messageTime.setText(DateFormat.format("(HH:mm:ss)",
+//                        model.getMessageTime()));
+//            }
+//        };
+//
+//        listOfMessages.setAdapter(adapter);
+//    }
 
     @Override
     protected void onStart() {
