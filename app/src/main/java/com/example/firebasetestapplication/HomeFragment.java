@@ -1,12 +1,34 @@
 package com.example.firebasetestapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
+import com.example.firebasetestapplication.databinding.FragmentHomeBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,10 +37,12 @@ import android.view.ViewGroup;
  */
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    ArrayList<News> newsArrayList = new ArrayList<>();
+    FragmentHomeBinding binding;
+    Context thiscontext;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -28,14 +52,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
@@ -58,6 +74,66 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        thiscontext = container.getContext();
+//        binding = FragmentHomeBinding.inflate(inflater, container, false);
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url("https://api.jsonbin.io/v3/b/636b51910e6a79321e444107")
+//                .get()
+//                .build();
+//        client.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+//                if(response.isSuccessful()){
+//                    String myResponse = response.body().string();
+//                    try {
+//                        JSONObject jsonObject = new JSONObject(myResponse);
+//                        JSONObject record = jsonObject.getJSONObject("record");
+//                        JSONArray club_news = record.getJSONArray("Club_News");
+//                        Gson gson = new Gson();
+//
+//                        Type listType = new TypeToken<ArrayList<News>>(){}.getType();
+//                        List<News> total_News = gson.fromJson(club_news.toString(),listType);
+//
+//                        for(News news : total_News) {
+//                            newsArrayList.add(news);
+//                        }
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    Runnable runnable = new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ListAdapter listAdapter = new ListAdapter(thiscontext, newsArrayList);
+//                            binding.listview.setAdapter(listAdapter);
+//                            binding.listview.setClickable(true);
+//                            binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                @Override
+//                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                                }
+//                            });
+//                        }
+//                    };
+//
+////                    MainActivity.this.runOnUiThread(new Runnable() {
+////                        @Override
+////                        public void run() {
+////                            ListAdapter listAdapter = new ListAdapter(HomeFragment.this, newsArrayList);
+////                            binding
+////                        }
+////                    });
+//                }
+//            }
+//        });
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }

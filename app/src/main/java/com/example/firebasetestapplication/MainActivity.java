@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
-
+//
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
@@ -73,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-//        logout = findViewById(R.id.signOut);
+        logout = findViewById(R.id.signOut);
 //        greetings = findViewById(R.id.greeting);
         currentUser = mAuth.getCurrentUser();
 
 //        fab = findViewById(R.id.fab);
-
+//
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -96,49 +98,49 @@ public class MainActivity extends AppCompatActivity {
 //                input.setText("");
 //            }
 //        });
-//
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//            }
-//        });
-//
-//        if (currentUser == null)
-//        {
-//            Intent intent
-//                    = new Intent(MainActivity.this,
-//                    LoginActivity.class);
-//            startActivity(intent);
-//        }
-//        else
-//        {
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        if (currentUser == null)
+        {
+            Intent intent
+                    = new Intent(MainActivity.this,
+                    LoginActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
 //            displayChatMessages();
-//
-//            user = FirebaseAuth.getInstance().getCurrentUser();
-//            reference = FirebaseDatabase.getInstance().getReference("Users");
-//            userID = user.getUid();
-//
-//            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    User userChat = snapshot.getValue(User.class);
-//                    if(userChat != null) {
-//                        String fullname = userChat.fullName;
-//                        String email = userChat.email;
-//                        String age = userChat.age;
-//
+
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            reference = FirebaseDatabase.getInstance().getReference("Users");
+            userID = user.getUid();
+
+            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User userChat = snapshot.getValue(User.class);
+                    if(userChat != null) {
+                        String fullname = userChat.fullName;
+                        String email = userChat.email;
+                        String age = userChat.age;
+
 //                        greetings.setText("Welcome, " + fullname + "!");
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                    Toast.makeText(MainActivity.this, "Something did not go right!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MainActivity.this, "Something did not go right!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -175,19 +177,19 @@ public class MainActivity extends AppCompatActivity {
 //
 //        listOfMessages.setAdapter(adapter);
 //    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (currentUser != null) {
-            adapter.startListening();
-        }
-    }
-
-    protected void onStop() {
-        super.onStop();
-        if (currentUser != null) {
-            adapter.stopListening();
-        }
-    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (currentUser != null) {
+//            adapter.startListening();
+//        }
+//    }
+//
+//    protected void onStop() {
+//        super.onStop();
+//        if (currentUser != null) {
+//            adapter.stopListening();
+//        }
+//    }
 }

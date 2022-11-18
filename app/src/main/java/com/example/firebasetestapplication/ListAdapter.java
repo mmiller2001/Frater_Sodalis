@@ -17,33 +17,39 @@ public class ListAdapter extends ArrayAdapter<News> {
 
 
     public ListAdapter(@NonNull Context context, ArrayList<News> newsArrayList) {
-        super(context, R.layout.custom_news_item,newsArrayList);
+        super(context,R.layout.custom_news_item,newsArrayList);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        View listItemView = convertView;
         News news = getItem(position);
 
-        if(convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.custom_news_item,parent,false);
+        if(listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.custom_news_item,parent,false);
         }
 
-        ImageView club_logo = convertView.findViewById(R.id.club_logo);
-        TextView club = convertView.findViewById(R.id.club);
-        TextView club_description = convertView.findViewById(R.id.club_description);
-        TextView title = convertView.findViewById(R.id.title);
-        TextView description = convertView.findViewById(R.id.description);
-        TextView time = convertView.findViewById(R.id.time);
-        
-        club_logo.setImageResource(R.drawable.frats_color); // Temporary
-        club.setText(news.club);
-        club_description.setText(news.club_description);
-        title.setText(news.title);
-        description.setText(news.description);
-        time.setText(news.time);
+        ImageView club_logo = listItemView.findViewById(R.id.club_logo);
+        TextView club = listItemView.findViewById(R.id.club);
+        TextView club_description = listItemView.findViewById(R.id.club_description);
+        TextView title = listItemView.findViewById(R.id.title);
+        TextView description = listItemView.findViewById(R.id.description);
+        TextView time = listItemView.findViewById(R.id.time);
 
-        return convertView;
+        if(news.getClub_logo() == "Frats") club_logo.setImageResource(R.drawable.frats_color);
+        else if(news.getClub_logo() == "Gammas") club_logo.setImageResource(R.drawable.gsp);
+        else if(news.getClub_logo() == "Kojies") club_logo.setImageResource(R.drawable.kojies);
+        else if(news.getClub_logo() == "Siggies") club_logo.setImageResource(R.drawable.sigma_theta_chi_graphic_2022);
+
+//        club_logo.setImageResource(R.drawable.frats_color); // Temporary
+        club.setText(news.getClub());
+        club_description.setText(news.getClub_description());
+        title.setText(news.getTitle());
+        description.setText(news.getDescription());
+        time.setText(news.getTime());
+
+        return listItemView;
     }
 }
