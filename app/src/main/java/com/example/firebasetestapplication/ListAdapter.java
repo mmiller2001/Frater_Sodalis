@@ -40,8 +40,12 @@ public class ListAdapter extends ArrayAdapter<News> {
 
         if(news.getClub_logo() == "Frats") club_logo.setImageResource(R.drawable.frats_color);
         else if(news.getClub_logo() == "Gammas") club_logo.setImageResource(R.drawable.gsp);
+        else if(news.getClub_logo() == "Galaxy") club_logo.setImageResource(R.drawable.galaxy_swoosh_navy);
         else if(news.getClub_logo() == "Kojies") club_logo.setImageResource(R.drawable.kojies);
         else if(news.getClub_logo() == "Siggies") club_logo.setImageResource(R.drawable.sigma_theta_chi_graphic_2022);
+        else if(news.getClub_logo()== "Gata") club_logo.setImageResource(R.drawable.gata);
+        else if(news.getClub_logo() == "Delta Theta") club_logo.setImageResource(R.drawable.deltatheta);
+        else if(news.getClub_logo() == "Trojans") club_logo.setImageResource(R.drawable.trojans);
 
 //        club_logo.setImageResource(R.drawable.frats_color); // Temporary
         club.setText(news.getClub());

@@ -2,6 +2,9 @@ package com.example.firebasetestapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +13,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,7 +26,9 @@ import android.widget.Toast;
 import com.example.firebasetestapplication.databinding.ActivityMainBinding;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private TextView greetings;
-    private Button logout;
+//    private Button logout;
 
     //Firebase
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -58,6 +64,43 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppbar);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                switch (id) {
+                    // home profile settings news share logout
+                    case R.id.home:
+                        Toast.makeText(MainActivity.this, "Home is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.profile:
+                        Toast.makeText(MainActivity.this, "Profile is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.settings:
+                        Toast.makeText(MainActivity.this, "Settings is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.news:
+                        Toast.makeText(MainActivity.this, "News is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.nav_share:
+                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.logout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        break;
+                }
+
+                return true;
+            }
+        });
 //
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -75,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        logout = findViewById(R.id.signOut);
+//        logout = findViewById(R.id.signOut);
 //        greetings = findViewById(R.id.greeting);
         currentUser = mAuth.getCurrentUser();
 
@@ -98,14 +141,6 @@ public class MainActivity extends AppCompatActivity {
 //                input.setText("");
 //            }
 //        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
 
         if (currentUser == null)
         {

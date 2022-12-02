@@ -3,14 +3,18 @@
 
     <item android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="@color/white"
         android:id="@+id/home"/>
     <item android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"
+        android:iconTint="@color/white"
         android:id="@+id/profile"/>
     <item android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"
+        android:iconTint="@color/white"
         android:id="@+id/settings"/>
     <item android:title="News"
         android:icon="@drawable/ic_baseline_newspaper_24"
+        android:iconTint="@color/white"
         android:id="@+id/news" />
 </menu>

@@ -3,96 +3,131 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<!--        This is the content of the app-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-                <Button
-                    android:id="@+id/signOut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:textSize="20sp"
-                    android:layout_alignParentRight="true" />
+            android:layout_height="match_parent">
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/greeting"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Greetings + "-->
-<!--                    android:layout_marginTop="80dp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:layout_alignParentRight="true"/>-->
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="Frater Sodalis"
+                    app:titleTextColor="@color/white"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    android:background="@color/blue_Frats" />
+            </com.google.android.material.appbar.AppBarLayout>
 
-<!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:clickable="true"-->
-<!--                    android:src="@drawable/ic_baseline_arrow_forward_24"-->
-<!--                    android:id="@+id/fab"-->
-<!--                    android:tint="@android:color/white"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    app:fabSize="mini" />-->
+            <FrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/appbarLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_toLeftOf="@id/fab"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_alignParentStart="true" />-->
+                <!--            The comments go after this line-->
 
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_toLeftOf="@id/fab"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_alignParentStart="true">-->
+                <!--        This is the content of the app-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
 
-<!--                    <EditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:hint="Input"-->
-<!--                        android:id="@+id/input"-->
-<!--                        />-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
+                    <!--                <TextView-->
+                    <!--                    android:id="@+id/greeting"-->
+                    <!--                    android:layout_width="wrap_content"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:text="Greetings + "-->
+                    <!--                    android:layout_marginTop="80dp"-->
+                    <!--                    android:textStyle="bold"-->
+                    <!--                    android:textColor="@color/black"-->
+                    <!--                    android:textSize="20sp"-->
+                    <!--                    android:layout_alignParentRight="true"/>-->
 
-<!--                <ListView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_alignParentStart="true"-->
-<!--                    android:layout_above="@id/fab"-->
-<!--                    android:dividerHeight="16dp"-->
-<!--                    android:divider="@android:color/transparent"-->
-<!--                    android:id="@+id/list_of_messages"-->
-<!--                    android:layout_marginBottom="16dp"/>-->
+                    <!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+                    <!--                    android:layout_width="wrap_content"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:clickable="true"-->
+                    <!--                    android:src="@drawable/ic_baseline_arrow_forward_24"-->
+                    <!--                    android:id="@+id/fab"-->
+                    <!--                    android:tint="@android:color/white"-->
+                    <!--                    android:layout_alignParentBottom="true"-->
+                    <!--                    android:layout_alignParentEnd="true"-->
+                    <!--                    app:fabSize="mini" />-->
+
+                    <!--                <com.google.android.material.textfield.TextInputLayout-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_toLeftOf="@id/fab"-->
+                    <!--                    android:layout_alignParentBottom="true"-->
+                    <!--                    android:layout_alignParentStart="true" />-->
+
+                    <!--                <com.google.android.material.textfield.TextInputLayout-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_toLeftOf="@id/fab"-->
+                    <!--                    android:layout_alignParentBottom="true"-->
+                    <!--                    android:layout_alignParentStart="true">-->
+
+                    <!--                    <EditText-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:hint="Input"-->
+                    <!--                        android:id="@+id/input"-->
+                    <!--                        />-->
+                    <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                    <!--                <ListView-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="match_parent"-->
+                    <!--                    android:layout_alignParentTop="true"-->
+                    <!--                    android:layout_alignParentStart="true"-->
+                    <!--                    android:layout_above="@id/fab"-->
+                    <!--                    android:dividerHeight="16dp"-->
+                    <!--                    android:divider="@android:color/transparent"-->
+                    <!--                    android:id="@+id/list_of_messages"-->
+                    <!--                    android:layout_marginBottom="16dp"/>-->
+
+                </RelativeLayout>
+
+            </FrameLayout>
 
         </RelativeLayout>
 
-    </FrameLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/my_navigation_items"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+    
+
 
 <!--    Bottom Navigation Menu-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blue_Frats"
+        app:itemIconTint="@drawable/button_nav_icon_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
