@@ -2,38 +2,47 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:id="@+id/home"/>
-    <item android:title="Profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:id="@+id/profile"/>
-    <item android:title="Settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:id="@+id/settings"/>
-    <item android:title="News"
-        android:icon="@drawable/ic_baseline_newspaper_24"
-        android:id="@+id/news" />
+
+    <group android:checkableBehavior="single">
+        <item android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:id="@+id/home"/>
+        <item android:title="Profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:id="@+id/profile"/>
+        <item android:title="Settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:id="@+id/settings"/>
+        <item android:title="News"
+            android:icon="@drawable/ic_baseline_newspaper_24"
+            android:id="@+id/news" />
+    </group>
+
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_baseline_share_24"
-                android:title="Share">
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_baseline_share_24"
+                    android:title="Share">
 
-            </item>
+                </item>
+            </group>
         </menu>
     </item>
 
     <item android:title="Profile">
         <menu>
-            <item
-                android:id="@+id/logout"
-                android:icon="@drawable/ic_baseline_logout_24"
-                android:title="Logout">
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_baseline_logout_24"
+                    android:title="Logout">
 
-            </item>
+                </item>
+            </group>
+
         </menu>
     </item>
 </menu>

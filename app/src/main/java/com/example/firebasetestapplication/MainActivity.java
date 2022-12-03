@@ -79,17 +79,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                item.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 switch (id) {
                     // home profile settings news share logout
                     case R.id.home:
-                        Toast.makeText(MainActivity.this, "Home is clicked", Toast.LENGTH_SHORT).show();break;
+                        replaceFragment(new HomeFragment());break;
                     case R.id.profile:
                         Toast.makeText(MainActivity.this, "Profile is clicked", Toast.LENGTH_SHORT).show();break;
                     case R.id.settings:
                         Toast.makeText(MainActivity.this, "Settings is clicked", Toast.LENGTH_SHORT).show();break;
                     case R.id.news:
-                        Toast.makeText(MainActivity.this, "News is clicked", Toast.LENGTH_SHORT).show();break;
+                        replaceFragment(new NewsFragment());
                     case R.id.nav_share:
                         Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();break;
                     case R.id.logout:
@@ -107,13 +108,16 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.home:
                     replaceFragment(new HomeFragment());
-                case R.id.profile:
                     break;
-                case R.id.settings:
+                case R.id.chat:
+                    replaceFragment(new ChatFragment());
+                    break;
+                case R.id.calendar:
+                    replaceFragment(new CalendarFragment());
                     break;
                 case R.id.news:
-//                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
                     replaceFragment(new NewsFragment());
+                    break;
             }
             return true;
         });
