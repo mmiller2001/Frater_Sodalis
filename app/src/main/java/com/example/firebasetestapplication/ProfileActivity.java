@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -77,7 +81,9 @@ public class ProfileActivity extends AppCompatActivity {
             });
         }
 
-        // Button Display Action
+
+
+        // Back Arrow Button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,11 +92,36 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        // Update Button Firebase Connection
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(intent);
+                String mFullname = fullname.getText().toString();
+                String mAge = age.getText().toString();
+                String mEmail = email.getText().toString();
+
+                updateData(mFullname, mAge, mEmail);
+            }
+        });
+    }
+
+    private void updateData(String mFullname, String mAge, String mEmail) {
+        HashMap User = new HashMap();
+        User.put("age", mAge);
+        User.put("email",mEmail);
+        User.put("fullName",mFullname);
+
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userID).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(ProfileActivity.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Failed to Update Profile", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
