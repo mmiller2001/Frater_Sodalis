@@ -41,15 +41,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@color/LightGrey"
+                android:background="@color/white"
                 android:padding="20dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_person_24" />
+                    android:src="@drawable/example1" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/image_profile"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:src="@drawable/ic_baseline_person_24" />-->
                 
                 <TextView
                     android:id="@+id/textview_fullname"
@@ -64,7 +70,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textview_channel"
+                    android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textview_fullname"
@@ -141,20 +147,20 @@
                     android:inputType="textEmailAddress"
                     android:layout_marginBottom="10dp"/>
 
-                <EditText
-                    android:id="@+id/passwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_edit_text_cut"
-                    android:drawableStart="@drawable/custom_password_icon"
-                    android:drawablePadding="12dp"
-                    android:textColor="@color/white"
-                    android:hint="Password"
-                    android:textColorHint="@color/white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:inputType="textPassword"
-                    android:layout_marginBottom="10dp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/passwd"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:background="@drawable/custom_edit_text_cut"-->
+<!--                    android:drawableStart="@drawable/custom_password_icon"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:hint="Password"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
 
 <!--                <com.google.android.material.textfield.TextInputLayout-->
 <!--                    android:layout_width="match_parent"-->

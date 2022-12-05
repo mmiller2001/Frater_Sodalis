@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +40,8 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView backButton = findViewById(R.id.backButton);
         Button updateButton = findViewById(R.id.update);
 
+        TextView profileName = findViewById(R.id.textview_fullname);
+        TextView description = findViewById(R.id.description);
         EditText fullname = findViewById(R.id.fullname);
         EditText age = findViewById(R.id.age);
         EditText email = findViewById(R.id.email);
@@ -68,6 +71,9 @@ public class ProfileActivity extends AppCompatActivity {
 //                        String email = userChat.email;
 //                        String age = userChat.age;
                         fullname.setText(userChat.fullName.toString());
+                        description.setText(userChat.email.toString());
+
+                        profileName.setText(userChat.fullName.toString());
                         age.setText(userChat.age.toString());
                         email.setText(userChat.email.toString());
 
