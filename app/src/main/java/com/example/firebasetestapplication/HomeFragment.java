@@ -1,15 +1,19 @@
 package com.example.firebasetestapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridLayout;
+import android.widget.Toast;
 
 import com.example.firebasetestapplication.databinding.FragmentHomeBinding;
 import com.google.gson.Gson;
@@ -43,6 +47,9 @@ public class HomeFragment extends Fragment {
     ArrayList<News> newsArrayList = new ArrayList<>();
     FragmentHomeBinding binding;
     Context thiscontext;
+    private GridLayout mainGrid;
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,7 +81,45 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
+        mainGrid = view.findViewById(R.id.mainGrid);
+        setSingleEvent(mainGrid);
+//        CardView cardView = (CardView) view.findViewById(R.id.cardViewProfile);
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getActivity(), "Clicked at this activity", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return view;
+    }
+
+    private void setSingleEvent(GridLayout mainGrid) {
+        for(int i = 0; i < mainGrid.getChildCount(); i++) {
+            CardView cardView = (CardView) mainGrid.getChildAt(i);
+            final int finalI = i;
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(finalI == 0) {
+                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                        startActivity(intent);
+                    }
+                    else if(finalI == 1) {
+                        Intent intent = new Intent(getActivity(), NewsletterActivity.class);
+                        startActivity(intent);
+                    }
+                    else if(finalI == 2) {
+                        Intent intent = new Intent(getActivity(), MembersActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(getActivity(), MerchActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
     }
 }

@@ -14,5 +14,6 @@
 
 
     <color name="LightGrey">#989797</color>
+    <color name="LightGreyVery">#ededed</color>
     <color name="underline">#D8D6D6</color>
 </resources>
