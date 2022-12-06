@@ -49,7 +49,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/example1" />
+                    android:src="@drawable/ic_baseline_person_24" />
 <!--                <ImageView-->
 <!--                    android:id="@+id/image_profile"-->
 <!--                    android:layout_width="100dp"-->

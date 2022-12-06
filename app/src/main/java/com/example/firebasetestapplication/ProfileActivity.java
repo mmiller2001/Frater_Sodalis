@@ -1,11 +1,17 @@
 package com.example.firebasetestapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
@@ -31,6 +43,12 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private String userID;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    StorageReference storageReference;
+    StorageTask mUploadTask;
+
+    private final int GALLERY_REQ_CODE = 1000;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +63,18 @@ public class ProfileActivity extends AppCompatActivity {
         EditText fullname = findViewById(R.id.fullname);
         EditText age = findViewById(R.id.age);
         EditText email = findViewById(R.id.email);
-        EditText password = findViewById(R.id.passwd);
+
+        imageView = findViewById(R.id.image_profile);
+
+        // Changing Profile Picture
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iGallery = new Intent(Intent.ACTION_PICK);
+                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallery, GALLERY_REQ_CODE);
+            }
+        });
 
         currentUser = mAuth.getCurrentUser();
 
@@ -62,14 +91,21 @@ public class ProfileActivity extends AppCompatActivity {
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();
 
+//            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            storageReference = FirebaseStorage.getInstance().getReference(userID);
+            storageReference.child(userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+//                    Uri downloadUri = taskSnapshot.get
+                }
+            });
+
+
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User userChat = snapshot.getValue(User.class);
                     if(userChat != null) {
-//                        String fullname = userChat.fullName;
-//                        String email = userChat.email;
-//                        String age = userChat.age;
                         fullname.setText(userChat.fullName.toString());
                         description.setText(userChat.email.toString());
 
@@ -111,6 +147,36 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    // Updating Photo from Gallery in User Profile Picture
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK) {
+            if(requestCode == GALLERY_REQ_CODE) {
+                imageView.setImageURI(data.getData());
+
+                userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                storageReference = FirebaseStorage.getInstance().getReference(userID);
+
+                Uri imageUri = Uri.parse(String.valueOf(imageView));
+
+//                storageReference.child(userID).putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Toast.makeText(ProfileActivity.this, "Successfully ReUploaded Image", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(ProfileActivity.this, "Couldn't save picture to Firebase", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+            }
+        }
+    }
+
+    // Updating Text Info about User Profile
     private void updateData(String mFullname, String mAge, String mEmail) {
         HashMap User = new HashMap();
         User.put("age", mAge);
@@ -130,5 +196,11 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }
