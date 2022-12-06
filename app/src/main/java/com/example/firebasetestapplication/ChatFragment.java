@@ -1,12 +1,30 @@
 package com.example.firebasetestapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,28 +33,31 @@ import android.view.ViewGroup;
  */
 public class ChatFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //My Variables
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseListAdapter<ChatMessage> adapter;
+    private FirebaseUser user;
+    private FirebaseUser currentUser;
+    private DatabaseReference reference;
+
+//    FirebaseDatabase firebaseDatabase;
+
+    private EditText input;
+
+    private FloatingActionButton fab;
+    private String userID;
+    private String nameDisplayed;
 
     public ChatFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ChatFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ChatFragment newInstance(String param1, String param2) {
         ChatFragment fragment = new ChatFragment();
         Bundle args = new Bundle();
@@ -58,7 +79,100 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat,container,false);
+        currentUser = mAuth.getCurrentUser();
+        input = view.findViewById(R.id.input);
+
+        if (currentUser == null)
+        {
+            Intent intent
+                    = new Intent(getActivity(),
+                    LoginActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            displayChatMessages(view);
+
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            reference = FirebaseDatabase.getInstance().getReference("Users");
+            userID = user.getUid();
+
+            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User userChat = snapshot.getValue(User.class);
+                    if(userChat != null) {
+                        nameDisplayed = userChat.fullName;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), "Something did not go right!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            // problem is input Edittext
+            fab = view.findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseDatabase.getInstance()
+                            .getReference("ChatMessages")
+                            .push()
+                            .setValue(new ChatMessage(input.getText().toString(),
+                                    nameDisplayed)
+                            );
+//
+//                    // Clear the input
+                    input.setText("");
+                }
+            });
+        }
+
+        return view;
+    }
+
+    private void displayChatMessages(View view) {
+        ListView listOfMessages = (ListView) view.findViewById(R.id.list_of_messages);
+
+        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
+                .setQuery(FirebaseDatabase.getInstance().getReference("ChatMessages"), ChatMessage.class).setLayout(R.layout.message).build(); // XML Layout Message.xml
+
+    //                    adapter.startListening();
+        adapter = new FirebaseListAdapter<ChatMessage>(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull ChatMessage model, int position) {
+                TextView messageText = (TextView)v.findViewById(R.id.message_text);
+                TextView messageUser = (TextView)v.findViewById(R.id.message_user);
+                TextView messageTime = (TextView)v.findViewById(R.id.message_time);
+
+                // Set their text
+                messageText.setText(model.getMessageText());
+                messageUser.setText(model.getMessageUser());
+
+                // Format the date before showing it
+                messageTime.setText(DateFormat.format("hh:mm aa",
+                        model.getMessageTime()));
+            }
+        };
+
+        listOfMessages.setAdapter(adapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (currentUser != null) {
+            adapter.startListening();
+        }
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (currentUser != null) {
+            adapter.stopListening();
+        }
     }
 }
