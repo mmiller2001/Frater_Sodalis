@@ -5,12 +5,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -138,7 +140,8 @@ public class ChatFragment extends Fragment {
         ListView listOfMessages = (ListView) view.findViewById(R.id.list_of_messages);
 
         FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("ChatMessages"), ChatMessage.class).setLayout(R.layout.message).build(); // XML Layout Message.xml
+                .setQuery(FirebaseDatabase.getInstance().getReference("ChatMessages").orderByChild("messageTime"), ChatMessage.class).setLayout(R.layout.message).build(); // XML Layout Message.xml
+
 
     //                    adapter.startListening();
         adapter = new FirebaseListAdapter<ChatMessage>(options) {
@@ -159,6 +162,7 @@ public class ChatFragment extends Fragment {
         };
 
         listOfMessages.setAdapter(adapter);
+//        listOfMessages.setSelection(adapter.getCount() - 1);
     }
 
     @Override
