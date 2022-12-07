@@ -13,9 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.firebasetestapplication.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,9 +55,14 @@ public class HomeFragment extends Fragment {
     ArrayList<News> newsArrayList = new ArrayList<>();
     FragmentHomeBinding binding;
     Context thiscontext;
+
     private GridLayout mainGrid;
+    private TextView home_name;
 
-
+    private FirebaseUser user;
+    private FirebaseUser currentUser;
+    private DatabaseReference reference;
+    private String userID;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,16 +96,33 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         mainGrid = view.findViewById(R.id.mainGrid);
+
+        home_name = view.findViewById(R.id.home_name);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
+
+        syncFirebase();
         setSingleEvent(mainGrid);
-//        CardView cardView = (CardView) view.findViewById(R.id.cardViewProfile);
-//        cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getActivity(), "Clicked at this activity", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         return view;
+    }
+
+    private void syncFirebase() {
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userChat = snapshot.getValue(User.class);
+                if(userChat != null) {
+                    home_name.setText(userChat.fullName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Something did not go right!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setSingleEvent(GridLayout mainGrid) {

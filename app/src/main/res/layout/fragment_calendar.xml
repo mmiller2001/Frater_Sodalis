@@ -6,11 +6,9 @@
     tools:context=".CalendarFragment">
 
 
-    <TextView
+    <com.squareup.timessquare.CalendarPickerView
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Calendar"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

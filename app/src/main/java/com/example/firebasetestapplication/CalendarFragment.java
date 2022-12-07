@@ -1,5 +1,6 @@
 package com.example.firebasetestapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,16 +8,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CalendarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class CalendarFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -24,19 +25,12 @@ public class CalendarFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // Calendar Variables
+
     public CalendarFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CalendarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CalendarFragment newInstance(String param1, String param2) {
         CalendarFragment fragment = new CalendarFragment();
         Bundle args = new Bundle();
@@ -58,7 +52,44 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar,container,false);
+        Date today = new Date();
+        Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+
+        CalendarPickerView datePicker = view.findViewById(R.id.calendar);
+        datePicker.init(today, nextYear.getTime()).withSelectedDate(today);
+
+        datePicker.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(Date date) {
+                String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
+//                String selectedDate = "" + calSelected.get(Calendar.DAY_OF_MONTH) + " " + (calSelected.get(Calendar.MONTH) + 1)+ " " + calSelected.get(Calendar.YEAR);
+
+
+                Calendar calSelected = Calendar.getInstance();
+                calSelected.setTime(date);
+
+                String dayNumber = String.valueOf(calSelected.get(Calendar.DAY_OF_MONTH));
+                String month = String.valueOf(calSelected.get(Calendar.MONTH) + 1);
+                String year = String.valueOf(calSelected.get(Calendar.YEAR));
+
+                Toast.makeText(getActivity(), selectedDate, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DateActivity.class);
+
+                intent.putExtra("selectedDate", selectedDate);
+                intent.putExtra("dayNumber",dayNumber);
+                intent.putExtra("month",month);
+                intent.putExtra("year",year);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDateUnselected(Date date) {
+                Toast.makeText(getActivity(), "Please select a Date.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
     }
 }

@@ -41,6 +41,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup:android-times-square:1.6.5@aar'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth:21.1.0'

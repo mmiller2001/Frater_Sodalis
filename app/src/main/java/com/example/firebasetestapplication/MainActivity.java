@@ -63,104 +63,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
-
-        MaterialToolbar toolbar = findViewById(R.id.topAppbar);
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                drawerLayout.openDrawer(GravityCompat.START);
-                TextView nav_header_name = findViewById(R.id.nav_header_name);
-                TextView nav_header_age = findViewById(R.id.nav_header_age);
-                TextView nav_header_email = findViewById(R.id.nav_header_email);
-                nav_header_name.setText(global_username);
-                nav_header_age.setText("Age: " + global_age);
-                nav_header_email.setText(global_email);
-            }
-        });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                item.setChecked(true);
-
-//                user = FirebaseAuth.getInstance().getCurrentUser();
-//                reference = FirebaseDatabase.getInstance().getReference("Users");
-//                userID = user.getUid();
-//
-//                reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        User userChat = snapshot.getValue(User.class);
-//                        if(userChat != null) {
-//                            TextView name = findViewById(R.id.name);
-//                            TextView username = findViewById(R.id.username);
-//                            TextView email = findViewById(R.id.email123123);
-//                            name.setText(userChat.fullName.toString());
-//                            username.setText(userChat.age.toString());
-//                            email.setText(userChat.email.toString());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(MainActivity.this, "Navigation Drawer did not update Profile info", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-                drawerLayout.closeDrawer(GravityCompat.START);
-                switch (id) {
-                    // home profile settings news share logout
-                    case R.id.home:
-                        replaceFragment(new HomeFragment());break;
-                    case R.id.profile:
-                        Toast.makeText(MainActivity.this, "Profile is clicked", Toast.LENGTH_SHORT).show();break;
-                    case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings is clicked", Toast.LENGTH_SHORT).show();break;
-                    case R.id.news:
-                        replaceFragment(new NewsFragment());
-                    case R.id.nav_share:
-                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();break;
-                    case R.id.logout:
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        break;
-                }
-
-                return true;
-            }
-        });
-//
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
-            switch (item.getItemId()) {
-                case R.id.home:
-                    replaceFragment(new HomeFragment());
-                    break;
-                case R.id.chat:
-                    replaceFragment(new ChatFragment());
-                    break;
-                case R.id.calendar:
-                    replaceFragment(new CalendarFragment());
-                    break;
-                case R.id.news:
-                    replaceFragment(new NewsFragment());
-                    break;
-            }
-            return true;
-        });
 
         currentUser = mAuth.getCurrentUser();
 
+        // possible error happening here
         if (currentUser == null)
         {
-            Intent intent
-                    = new Intent(MainActivity.this,
-                    LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
         else
@@ -186,6 +95,85 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppbar);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+
+        replaceFragment(new HomeFragment());
+        toolbar.setTitle("Home");
+
+        // Navigation Drawer Profile Information
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                drawerLayout.openDrawer(GravityCompat.START);
+                TextView nav_header_name = findViewById(R.id.nav_header_name);
+                TextView nav_header_age = findViewById(R.id.nav_header_age);
+                TextView nav_header_email = findViewById(R.id.nav_header_email);
+
+                nav_header_name.setText(global_username);
+                nav_header_age.setText("Age: " + global_age);
+                nav_header_email.setText(global_email);
+            }
+        });
+
+        // Navigation Drawer Item Menu for Clicking
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                item.setChecked(true);
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                switch (id) {
+                    // home profile settings news share logout
+                    case R.id.home:
+                        replaceFragment(new HomeFragment());break;
+                    case R.id.profile:
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);break;
+                    case R.id.settings:
+                        Toast.makeText(MainActivity.this, "Settings is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.news:
+                        replaceFragment(new NewsFragment());
+                    case R.id.nav_share:
+                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.logout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        break;
+                }
+
+                return true;
+            }
+        });
+//
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            switch (item.getItemId()) {
+                case R.id.home:
+                    toolbar.setTitle("Home");
+                    replaceFragment(new HomeFragment());
+                    break;
+                case R.id.chat:
+                    toolbar.setTitle("Active Frats 2022");
+                    replaceFragment(new ChatFragment());
+                    break;
+                case R.id.calendar:
+                    toolbar.setTitle("My Calendar");
+                    replaceFragment(new CalendarFragment());
+                    break;
+                case R.id.news:
+                    toolbar.setTitle("Activity News");
+                    replaceFragment(new NewsFragment());
+                    break;
+            }
+            return true;
+        });
     }
 
     private void replaceFragment(Fragment fragment) {

@@ -120,15 +120,20 @@ public class ChatFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FirebaseDatabase.getInstance()
-                            .getReference("ChatMessages")
-                            .push()
-                            .setValue(new ChatMessage(input.getText().toString(),
-                                    nameDisplayed)
-                            );
+                    if(!input.getText().toString().isEmpty()) {
+                        FirebaseDatabase.getInstance()
+                                .getReference("ChatMessages")
+                                .push()
+                                .setValue(new ChatMessage(input.getText().toString(),
+                                        nameDisplayed)
+                                );
 //
 //                    // Clear the input
-                    input.setText("");
+                        input.setText("");
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Unable to send blank message. Try again", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -162,7 +167,6 @@ public class ChatFragment extends Fragment {
         };
 
         listOfMessages.setAdapter(adapter);
-//        listOfMessages.setSelection(adapter.getCount() - 1);
     }
 
     @Override

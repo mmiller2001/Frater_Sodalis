@@ -87,22 +87,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
-                
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/edittext_name"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:hint="Full Name">-->
-
-<!--                    <com.google.android.material.textfield.TextInputEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:drawableStart="@drawable/ic_baseline_person_24"-->
-<!--                        android:drawableTint="@color/blue_Frats"-->
-<!--                        android:drawablePadding="10dp"-->
-<!--                        android:text="fullnameuser"/>-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <EditText
                     android:id="@+id/fullname"
@@ -146,69 +130,6 @@
                     android:paddingEnd="12dp"
                     android:inputType="textEmailAddress"
                     android:layout_marginBottom="10dp"/>
-
-<!--                <EditText-->
-<!--                    android:id="@+id/passwd"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:background="@drawable/custom_edit_text_cut"-->
-<!--                    android:drawableStart="@drawable/custom_password_icon"-->
-<!--                    android:drawablePadding="12dp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:hint="Password"-->
-<!--                    android:textColorHint="@color/white"-->
-<!--                    android:paddingStart="12dp"-->
-<!--                    android:paddingEnd="12dp"-->
-<!--                    android:inputType="textPassword"-->
-<!--                    android:layout_marginBottom="10dp"/>-->
-
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/edittext_age"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:hint="Age">-->
-
-<!--                    <com.google.android.material.textfield.TextInputEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:drawableStart="@drawable/custom_age_icon"-->
-<!--                        android:drawableTint="@color/blue_Frats"-->
-<!--                        android:drawablePadding="10dp"-->
-<!--                        android:text="21"/>-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/edittext_email"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:hint="Email">-->
-
-<!--                    <com.google.android.material.textfield.TextInputEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:drawableStart="@drawable/ic_baseline_email_24"-->
-<!--                        android:drawableTint="@color/blue_Frats"-->
-<!--                        android:drawablePadding="10dp"-->
-<!--                        android:text="Email"/>-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--                <com.google.android.material.textfield.TextInputLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/edittext_password"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:hint="Password">-->
-
-<!--                    <com.google.android.material.textfield.TextInputEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:drawableStart="@drawable/ic_baseline_password_24"-->
-<!--                        android:drawableTint="@color/blue_Frats"-->
-<!--                        android:drawablePadding="10dp"-->
-<!--                        android:text="Password"/>-->
-<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/update"
