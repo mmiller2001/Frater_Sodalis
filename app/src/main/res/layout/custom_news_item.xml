@@ -41,6 +41,12 @@
                     android:layout_height="wrap_content"
                     android:text="Social Club at Abilene Christian University"
                     android:textStyle="italic"/>
+                <TextView
+                    android:id="@+id/club_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Friday, December 30, 2022"
+                    android:textStyle="italic"/>
 
             </LinearLayout>
 

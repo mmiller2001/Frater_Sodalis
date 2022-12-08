@@ -122,7 +122,6 @@ public class DateActivity extends AppCompatActivity {
     private void firebaseRetrievingEvents() {
 //        News news = new News("Frats","Social Club at Abilene Christian University","Frater Sodalis","Haunted Forrest","Be the first to register to Haunted Forest 2023! This year we will be having an exciting opportunity to scare you with the members of our fraternity!","8:15PM");
 //        News news2 = new News("Gammas","Social Club at Abilene Christian University","Gamma Sigma Phi","68 Hour Volleyball","Enter our exciting, non-stop, 68 hour volleyball. Lot's of fun with friends, volleyball and no rest!","3:25PM");
-        News news3 = new News("Kojies","Social Club at Abilene Christian University","Ko Jo Kai","Marathon","Sign up for our annual Marathon. Run and support the local communities in Abilene as they battle through violence and poverty.","7:00PM");
 //        FirebaseDatabase.getInstance().getReference("Calendar" + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid())
 //                .child(global_selectedDate).addListenerForSingleValueEvent(new ValueEventListener() {
 //                    @Override
@@ -158,15 +157,16 @@ public class DateActivity extends AppCompatActivity {
                     }
                 });
 
+//        News news3 = new News("Kojies","Social Club at Abilene Christian University","Ko Jo Kai","Marathon","Sign up for our annual Marathon. Run and support the local communities in Abilene as they battle through violence and poverty.","7:00PM","Tuesday, December 13, 2022");
 
-        // Focuses on adding one item
+//         Focuses on adding one item
 //        FirebaseDatabase.getInstance().getReference("Calendar" + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid())
 //                .child(global_selectedDate)
 //                .setValue(news3).addOnCompleteListener(new OnCompleteListener<Void>() {
 //                    @Override
 //                    public void onComplete(@NonNull Task<Void> task) {
 //                        if(task.isSuccessful()) {
-//                            Toast.makeText(getApplicationContext(), "UID: " + FirebaseAuth.getInstance().getCurrentUser().getUid() + " Date: " + global_selectedDate, Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(), "Successfully added date to Calendar", Toast.LENGTH_LONG).show();
 //                        } else {
 //                            Toast.makeText(DateActivity.this, "Registering Calendar/getUID failed", Toast.LENGTH_LONG).show();
 //                        }

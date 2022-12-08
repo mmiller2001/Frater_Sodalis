@@ -27,7 +27,7 @@ public class ListAdapter extends ArrayAdapter<News> {
         View listItemView = convertView;
         News news = getItem(position);
 
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.custom_news_item,parent,false);
         }
 
@@ -37,15 +37,7 @@ public class ListAdapter extends ArrayAdapter<News> {
         TextView title = listItemView.findViewById(R.id.title);
         TextView description = listItemView.findViewById(R.id.description);
         TextView time = listItemView.findViewById(R.id.time);
-
-        if(news.getClub_logo() == "Frats") club_logo.setImageResource(R.drawable.frats_color);
-        else if(news.getClub_logo() == "Gammas") club_logo.setImageResource(R.drawable.gsp);
-        else if(news.getClub_logo() == "Galaxy") club_logo.setImageResource(R.drawable.galaxy_swoosh_navy);
-        else if(news.getClub_logo() == "Kojies") club_logo.setImageResource(R.drawable.kojies);
-        else if(news.getClub_logo() == "Siggies") club_logo.setImageResource(R.drawable.sigma_theta_chi_graphic_2022);
-        else if(news.getClub_logo()== "Gata") club_logo.setImageResource(R.drawable.gata);
-        else if(news.getClub_logo() == "Delta Theta") club_logo.setImageResource(R.drawable.deltatheta);
-        else if(news.getClub_logo() == "Trojans") club_logo.setImageResource(R.drawable.trojans);
+        TextView date = listItemView.findViewById(R.id.club_date);
 
 //        club_logo.setImageResource(R.drawable.frats_color); // Temporary
         club.setText(news.getClub());
@@ -53,6 +45,16 @@ public class ListAdapter extends ArrayAdapter<News> {
         title.setText(news.getTitle());
         description.setText(news.getDescription());
         time.setText(news.getTime());
+        date.setText(news.getClub_date());
+
+        if(news.getClub_logo().equalsIgnoreCase("Frats")) club_logo.setImageResource(R.drawable.frats_color);
+        else if(news.getClub_logo().equalsIgnoreCase("Gammas")) club_logo.setImageResource(R.drawable.gsp);
+        else if(news.getClub_logo().equalsIgnoreCase("Galaxy")) club_logo.setImageResource(R.drawable.galaxy_swoosh_navy);
+        else if(news.getClub_logo().equalsIgnoreCase("Kojies")) club_logo.setImageResource(R.drawable.kojies);
+        else if(news.getClub_logo().equalsIgnoreCase("Siggies")) club_logo.setImageResource(R.drawable.sigma_theta_chi_graphic_2022);
+        else if(news.getClub_logo().equalsIgnoreCase("Gata")) club_logo.setImageResource(R.drawable.gata);
+        else if(news.getClub_logo().equalsIgnoreCase("Delta Theta")) club_logo.setImageResource(R.drawable.deltatheta);
+        else if(news.getClub_logo().equalsIgnoreCase("Trojans")) club_logo.setImageResource(R.drawable.trojans);
 
         return listItemView;
     }

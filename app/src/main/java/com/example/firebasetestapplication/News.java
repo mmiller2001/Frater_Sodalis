@@ -8,18 +8,21 @@ public class News {
     String title;
     String description;
     String time;
+    String club_date;
+
 
     public News() {
 
     }
 
-    public News(String club_logo, String club_description, String club, String title, String description, String time) {
+    public News(String club_logo, String club_description, String club, String title, String description, String time, String club_date) {
         this.club_logo = club_logo;
         this.club_description = club_description;
         this.club = club;
         this.title = title;
         this.description = description;
         this.time = time;
+        this.club_date = club_date;
     }
 
     public String getClub_logo() {return club_logo;}
@@ -28,6 +31,8 @@ public class News {
     public String getTitle() {return title;}
     public String getDescription() {return description;}
     public String getTime() {return time;}
+    public String getClub_date() {return club_date;}
+
 
     public void setClub_logo(String club_logo) {this.club_logo = club_logo;}
     public void setClub(String club) {this.club = club;}
@@ -35,6 +40,7 @@ public class News {
     public void setTitle(String title) {this.title = title;}
     public void setDescription(String description) {this.description = description;}
     public void setTime(String time) {this.time = time;}
+    public void setClub_date(String club_date) {this.club_date = club_date;}
 
 
 }

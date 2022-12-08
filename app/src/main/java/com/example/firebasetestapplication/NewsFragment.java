@@ -12,8 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.firebasetestapplication.databinding.FragmentNewsBinding;
 import com.google.gson.Gson;
@@ -104,18 +106,26 @@ public class NewsFragment extends Fragment {
 
 //        Inflate the layout for this fragment
 
-        newsArrayList.add(new News("Frats","Social Club at Abilene Christian University","Frater Sodalis","Haunted Forrest","Be the first to register to Haunted Forest 2023! This year we will be having an exciting opportunity to scare you with the members of our fraternity!","8:15PM"));
-        newsArrayList.add(new News("Gammas","Social Club at Abilene Christian University","Gamma Sigma Phi","68 Hour Volleyball","Enter our exciting, non-stop, 68 hour volleyball. Lot's of fun with friends, volleyball and no rest!","3:25PM"));
-        newsArrayList.add(new News("Kojies","Social Club at Abilene Christian University","Ko Jo Kai","Marathon","Sign up for our annual Marathon. Run and support the local communities in Abilene as they battle through violence and poverty.","7:00PM"));
-        newsArrayList.add(new News("Trojans","Social Club at Abilene Christian University","Trojans","Chapel","We welcome you to our private chapel where everyone will listen and get to know how men are trying to be better men for Trojans. We will shout in your ear if necessary until you remember us","6:00PM"));
-        newsArrayList.add(new News("Delta Theta","Social Club at Abilene Christian University","Delta Theta","Soccer Practice","We invite you to form part of our tradition in playing soccer for 24 consecutive straight hours. Every club is welcome to participate with how many teams they feel necessary to win and the first place price gets an iPhoneX","12:00PM"));
-        newsArrayList.add(new News("Galaxy","Social Club at Abilene Christian University","Galaxy","Football Intramural Tournament","Get ready to create your own team and compete in our tournament. Winner takes a discount from your favorite restaurant and a trofee!","7:00PM"));
-        newsArrayList.add(new News("Gata","Social Club at Abilene Christian University","Gata","Friendsgiving","Exclusive for Frater Sodalis and Gata Members only. Feel free to come and hang out with us from 6:00PM-8:00PM on our Friendsgiving event. We will have lots of fun with friends, food, games and fun conversations for you to meet new people or see old ones as well.","6:00PM"));
-        newsArrayList.add(new News("Siggies","Social Club at Abilene Christian University","Sigma Theta Chi","Siggie Pavilion Concert","Exclusive for this one in a lifetime only, please come to our concert for Harry Styles. Performing for our dear Abilene Christian University Students, Harry Styles will personally perform his new upcoming songs for his new album. Don't miss it","11:00PM"));
+        newsArrayList.add(new News("Frats","Social Club at Abilene Christian University","Frater Sodalis","Haunted Forrest","Be the first to register to Haunted Forest 2023! This year we will be having an exciting opportunity to scare you with the members of our fraternity!","8:15PM","Friday, December 30, 2022"));
+        newsArrayList.add(new News("Gammas","Social Club at Abilene Christian University","Gamma Sigma Phi","68 Hour Volleyball","Enter our exciting, non-stop, 68 hour volleyball. Lot's of fun with friends, volleyball and no rest!","3:25PM","Tuesday, December 20, 2022"));
+        newsArrayList.add(new News("Kojies","Social Club at Abilene Christian University","Ko Jo Kai","Marathon","Sign up for our annual Marathon. Run and support the local communities in Abilene as they battle through violence and poverty.","7:00PM","Wednesday, December 28, 2022"));
+        newsArrayList.add(new News("Trojans","Social Club at Abilene Christian University","Trojans","Chapel","We welcome you to our private chapel where everyone will listen and get to know how men are trying to be better men for Trojans. We will shout in your ear if necessary until you remember us","6:00PM","Thursday, December 29, 2022"));
+        newsArrayList.add(new News("Delta Theta","Social Club at Abilene Christian University","Delta Theta","Soccer Practice","We invite you to form part of our tradition in playing soccer for 24 consecutive straight hours. Every club is welcome to participate with how many teams they feel necessary to win and the first place price gets an iPhoneX","12:00PM","Thursday, December 22, 2022"));
+        newsArrayList.add(new News("Galaxy","Social Club at Abilene Christian University","Galaxy","Football Intramural Tournament","Get ready to create your own team and compete in our tournament. Winner takes a discount from your favorite restaurant and a trofee!","7:00PM","Saturday, December 24, 2022"));
+        newsArrayList.add(new News("Gata","Social Club at Abilene Christian University","Gata","Friendsgiving","Exclusive for Frater Sodalis and Gata Members only. Feel free to come and hang out with us from 6:00PM-8:00PM on our Friendsgiving event. We will have lots of fun with friends, food, games and fun conversations for you to meet new people or see old ones as well.","6:00PM","Sunday, December 25, 2022"));
+        newsArrayList.add(new News("Siggies","Social Club at Abilene Christian University","Sigma Theta Chi","Siggie Pavilion Concert","Exclusive for this one in a lifetime only, please come to our concert for Harry Styles. Performing for our dear Abilene Christian University Students, Harry Styles will personally perform his new upcoming songs for his new album. Don't miss it","11:00PM","Monday, December 26, 2022"));
         //        buildRequest(); // takes too much time so it skips to ListAdapter
 
         ListAdapter listAdapter = new ListAdapter(getActivity(),newsArrayList);
         listview.setAdapter(listAdapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                News myNews = newsArrayList.get(i);
+                Toast.makeText(getActivity(), myNews.getClub() + " " + myNews.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 //        mHandler.post(new Runnable() {
