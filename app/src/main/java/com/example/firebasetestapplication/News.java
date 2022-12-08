@@ -9,6 +9,10 @@ public class News {
     String description;
     String time;
 
+    public News() {
+
+    }
+
     public News(String club_logo, String club_description, String club, String title, String description, String time) {
         this.club_logo = club_logo;
         this.club_description = club_description;

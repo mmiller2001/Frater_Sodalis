@@ -74,7 +74,7 @@ public class CalendarFragment extends Fragment {
                 String month = String.valueOf(calSelected.get(Calendar.MONTH) + 1);
                 String year = String.valueOf(calSelected.get(Calendar.YEAR));
 
-                Toast.makeText(getActivity(), selectedDate, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), selectedDate, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), DateActivity.class);
 
                 intent.putExtra("selectedDate", selectedDate);
@@ -86,7 +86,7 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public void onDateUnselected(Date date) {
-                Toast.makeText(getActivity(), "Please select a Date.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Please select a Date.", Toast.LENGTH_SHORT).show();
             }
         });
 

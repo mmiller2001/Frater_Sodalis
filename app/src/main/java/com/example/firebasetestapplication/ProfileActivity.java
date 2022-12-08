@@ -104,6 +104,8 @@ public class ProfileActivity extends AppCompatActivity {
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    String test = snapshot.toString();
+//                    Toast.makeText(getApplicationContext(), test, Toast.LENGTH_LONG).show();
                     User userChat = snapshot.getValue(User.class);
                     if(userChat != null) {
                         fullname.setText(userChat.fullName.toString());
