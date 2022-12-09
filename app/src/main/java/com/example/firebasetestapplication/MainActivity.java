@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private String global_email;
     private String global_age;
 
+//    private String fragmentLocation = "1";
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 //            if(extras == null) {
 //
 //            } else {
-//                if(extras.getString("FragmentNum").equalsIgnoreCase("4")) {replaceFragment(new NewsFragment());}
+//                fragmentLocation = extras.getString("Fragment");
 //            }
 //        } else {
 //

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -40,13 +41,15 @@ public class SpecificNews extends AppCompatActivity {
     private TextView newsDate;
     private TextView newsTime;
 
+    private boolean eventExists = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_news);
 
         ImageView backButton = findViewById(R.id.backButton);
-        Button toCalendar = findViewById(R.id.update);
+        Button toCalendar = (Button) findViewById(R.id.update);
 
         circle_profile = findViewById(R.id.image_profile);
         profileName = findViewById(R.id.textview_fullname);
@@ -89,6 +92,9 @@ public class SpecificNews extends AppCompatActivity {
 
         syncInformation();
 
+        //Checking if Event exists in Firebase Calendar
+//        checkEventInCalendar();
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,10 +120,32 @@ public class SpecificNews extends AppCompatActivity {
                 });
 
                 Intent intent = new Intent(SpecificNews.this, MainActivity.class);
+//                intent.putExtra("Fragment","4");
                 startActivity(intent);
             }
         });
     }
+
+//    private void checkEventInCalendar() {
+//        //Checking if Event exists in Firebase Calendar
+//        FirebaseDatabase.getInstance().getReference("Calendar" + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if(snapshot.hasChild(global_club_date)) {
+//                            eventExists = true;
+//                        }
+//                        else {
+//                            Toast.makeText(SpecificNews.this, "This event is not in the calendar", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
 
     private void syncInformation() {
         if(global_club_logo.equalsIgnoreCase("Frats")) circle_profile.setImageResource(R.drawable.frats_color);
