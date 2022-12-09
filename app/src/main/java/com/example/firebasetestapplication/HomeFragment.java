@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                     }
                     else if(finalI == 1) {
-                        Intent intent = new Intent(getActivity(), NewsletterActivity.class);
+                        Intent intent = new Intent(getActivity(), MyEventsActivity.class);
                         startActivity(intent);
                     }
                     else if(finalI == 2) {
