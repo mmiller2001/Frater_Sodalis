@@ -13,9 +13,9 @@
         <item android:title="Members"
             android:icon="@drawable/ic_baseline_people_24"
             android:id="@+id/members"/>
-        <item android:title="News"
+        <item android:title="Events"
             android:icon="@drawable/ic_baseline_newspaper_24"
-            android:id="@+id/news" />
+            android:id="@+id/events" />
     </group>
 
 

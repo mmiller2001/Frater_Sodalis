@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.members:
                         Intent intentMembers = new Intent(MainActivity.this, MembersActivity.class);
                         startActivity(intentMembers);break;
-                    case R.id.news:
+                    case R.id.events:
                         replaceFragment(new NewsFragment());
                     case R.id.merch:
                         Toast.makeText(MainActivity.this, "Merch was clicked", Toast.LENGTH_SHORT).show();break;
