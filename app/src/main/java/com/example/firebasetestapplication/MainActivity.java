@@ -147,14 +147,15 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         replaceFragment(new HomeFragment());break;
                     case R.id.profile:
-                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                        startActivity(intent);break;
-                    case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings is clicked", Toast.LENGTH_SHORT).show();break;
+                        Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intentProfile);break;
+                    case R.id.members:
+                        Intent intentMembers = new Intent(MainActivity.this, MembersActivity.class);
+                        startActivity(intentMembers);break;
                     case R.id.news:
                         replaceFragment(new NewsFragment());
-                    case R.id.nav_share:
-                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();break;
+                    case R.id.merch:
+                        Toast.makeText(MainActivity.this, "Merch was clicked", Toast.LENGTH_SHORT).show();break;
                     case R.id.logout:
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));

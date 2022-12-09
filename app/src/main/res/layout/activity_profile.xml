@@ -49,7 +49,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_person_24" />
+                    android:src="@drawable/frats_color" />
 <!--                <ImageView-->
 <!--                    android:id="@+id/image_profile"-->
 <!--                    android:layout_width="100dp"-->
@@ -110,6 +110,7 @@
                     android:drawableStart="@drawable/custom_age_icon"
                     android:drawablePadding="12dp"
                     android:hint="Age"
+                    android:inputType="number"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:paddingStart="12dp"

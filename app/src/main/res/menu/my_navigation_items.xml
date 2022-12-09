@@ -10,29 +10,29 @@
         <item android:title="Profile"
             android:icon="@drawable/ic_baseline_person_24"
             android:id="@+id/profile"/>
-        <item android:title="Settings"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:id="@+id/settings"/>
+        <item android:title="Members"
+            android:icon="@drawable/ic_baseline_people_24"
+            android:id="@+id/members"/>
         <item android:title="News"
             android:icon="@drawable/ic_baseline_newspaper_24"
             android:id="@+id/news" />
     </group>
 
 
-    <item android:title="Communicate">
+    <item android:title="Club">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_baseline_share_24"
-                    android:title="Share">
+                    android:id="@+id/merch"
+                    android:icon="@drawable/ic_baseline_attach_money_24"
+                    android:title="Merch">
 
                 </item>
             </group>
         </menu>
     </item>
 
-    <item android:title="Profile">
+    <item android:title="App">
         <menu>
             <group android:checkableBehavior="single">
                 <item

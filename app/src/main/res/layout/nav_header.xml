@@ -10,7 +10,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/example1" />
+        android:src="@drawable/frats_color" />
     
     <TextView
         android:id="@+id/nav_header_name"
