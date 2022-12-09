@@ -19,6 +19,13 @@
         android:theme="@style/Theme.FirebaseTestApplication"
         tools:targetApi="31">
         <activity
+            android:name=".SpecificNews"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DateActivity"
             android:exported="false">
             <meta-data
@@ -83,7 +90,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

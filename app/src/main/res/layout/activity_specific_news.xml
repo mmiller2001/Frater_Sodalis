@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpecificNews">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_Frats">
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/upper_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Profile"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:padding="10dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/white"
+                android:padding="20dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_person_24" />
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/image_profile"-->
+                <!--                    android:layout_width="100dp"-->
+                <!--                    android:layout_height="100dp"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:src="@drawable/ic_baseline_person_24" />-->
+
+                <TextView
+                    android:id="@+id/textview_fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lucas Moro"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/image_profile"
+                    android:includeFontPadding="false"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_Frats"
+                    android:layout_below="@id/textview_fullname"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/image_profile"
+                    android:text="Subscribe to the Channel!"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/news_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Haunted Forrest"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/news_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Be the first to register to Haunted Forest 2023! This year we will be having an exciting opportunity to scare you with the members of our fraternity!"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/news_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Friday, December 30, 2022"
+                    android:textStyle="italic"
+                    android:textColor="@color/blue_Frats"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/news_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="8:15PM"
+                    android:textStyle="italic"
+                    android:textColor="@color/blue_Frats"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="10dp"/>
+
+<!--                <EditText-->
+<!--                    android:id="@+id/fullname"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:background="@drawable/custom_edit_text_cut"-->
+<!--                    android:drawableStart="@drawable/custom_name_icon"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:hint="Full Name"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/age"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:background="@drawable/custom_edit_text_cut"-->
+<!--                    android:drawableStart="@drawable/custom_age_icon"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:hint="Age"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/email"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:background="@drawable/custom_edit_text_cut"-->
+<!--                    android:drawableStart="@drawable/custom_mail_icon"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:hint="Email"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    android:paddingStart="12dp"-->
+<!--                    android:paddingEnd="12dp"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/update"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_button_shape"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    android:text="Add to My Calendar"
+                    android:layout_marginTop="20dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

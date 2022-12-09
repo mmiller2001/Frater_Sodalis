@@ -1,6 +1,7 @@
 package com.example.firebasetestapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,6 +126,17 @@ public class NewsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 News myNews = newsArrayList.get(i);
                 Toast.makeText(getActivity(), myNews.getClub() + " " + myNews.getTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), SpecificNews.class);
+                intent.putExtra("club_logo",myNews.getClub_logo());
+                intent.putExtra("club_description",myNews.getClub_description());
+                intent.putExtra("club", myNews.getClub());
+                intent.putExtra("title",myNews.getTitle());
+                intent.putExtra("description",myNews.getDescription());
+                intent.putExtra("time",myNews.getTime());
+                intent.putExtra("club_date",myNews.getClub_date());
+
+                startActivity(intent);
             }
         });
 

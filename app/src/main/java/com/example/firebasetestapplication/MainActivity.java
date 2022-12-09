@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
 
         currentUser = mAuth.getCurrentUser();
 
+//        if (savedInstanceState == null) {
+//            Bundle extras = getIntent().getExtras();
+//            if(extras == null) {
+//
+//            } else {
+//                if(extras.getString("FragmentNum").equalsIgnoreCase("4")) {replaceFragment(new NewsFragment());}
+//            }
+//        } else {
+//
+//        }
+
         // possible error happening here
         if (currentUser == null)
         {
