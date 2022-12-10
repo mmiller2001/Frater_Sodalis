@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <LinearLayout
+            android:id="@+id/first_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp">
+
+            <ImageView
+                android:id="@+id/merch_item"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/black_shirt"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/merch_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="Black T-Shirt"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/merch_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customized Black T-Shirt given as passdown since 2006."
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"/>
+
+                <TextView
+                    android:id="@+id/merch_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textColor="@color/blue_Frats"
+                    android:text="$ 26.99"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/time"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:padding="5dp"-->
+        <!--            android:layout_marginRight="8dp"-->
+        <!--            android:text="8:15pm" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/title"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/first_layout"-->
+        <!--            android:layout_marginTop="0dp"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:textSize="15sp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:text="Haunted Forrest is now open! 6869 E North " />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/description"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/title"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:textSize="15sp"-->
+        <!--            android:text="@string/HF_Example"/>-->
+
+
+    </RelativeLayout>
+
+</LinearLayout>

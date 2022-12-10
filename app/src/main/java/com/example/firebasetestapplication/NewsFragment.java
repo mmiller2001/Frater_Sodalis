@@ -140,24 +140,6 @@ public class NewsFragment extends Fragment {
             }
         });
 
-
-//        mHandler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                ListAdapter listAdapter = new ListAdapter(getActivity(),newsArrayList);
-//                listview.setAdapter(listAdapter); // line that breaks program
-//            }
-//        });
-
-//        getActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                ListAdapter listAdapter = new ListAdapter(getActivity(),newsArrayList);
-//                listview.setAdapter(listAdapter); // line that breaks program
-//            }
-//        });
-
-
         return v;
     }
 
