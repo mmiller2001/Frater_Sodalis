@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Firebase
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseListAdapter<ChatMessage> adapter;
     private FirebaseUser user;
     private FirebaseUser currentUser;
     private DatabaseReference reference;
@@ -153,9 +152,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intentMembers = new Intent(MainActivity.this, MembersActivity.class);
                         startActivity(intentMembers);break;
                     case R.id.events:
-                        replaceFragment(new NewsFragment());
+                        replaceFragment(new NewsFragment());break;
                     case R.id.merch:
-                        Toast.makeText(MainActivity.this, "Merch was clicked", Toast.LENGTH_SHORT).show();break;
+                        Intent intentMerch = new Intent(MainActivity.this, MerchActivity.class);
+                        startActivity(intentMerch);break;
                     case R.id.logout:
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
