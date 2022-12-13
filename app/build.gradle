@@ -4,17 +4,18 @@ plugins {
 }
 
 android {
-    namespace 'com.example.firebasetestapplication'
+    namespace 'com.marlon.firebasetestapplication' // change package here
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.firebasetestapplication"
+        applicationId "com.marlon.firebasetestapplication" // original "com.marlon.firebasetestapplication"
         minSdk 27 // 30
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 43
+        versionName "43.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        archivesBaseName = "FratsApp-v${versionName}(${versionCode})"
     }
 
     buildTypes {

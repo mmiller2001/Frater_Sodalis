@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "760024122181",
-    "project_id": "fir-testapplication-c5ea9",
-    "storage_bucket": "fir-testapplication-c5ea9.appspot.com"
+    "project_number": "920939972665",
+    "project_id": "frater-sodalis",
+    "storage_bucket": "frater-sodalis.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:760024122181:android:d95939dc233375a672f42c",
+        "mobilesdk_app_id": "1:920939972665:android:b2b74483e6ae0a5fd5a5e8",
         "android_client_info": {
-          "package_name": "com.example.firebasetestapplication"
+          "package_name": "com.marlon.firebasetestapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "760024122181-pc7tipriclre3vdksh4kjf9k0d95cbpd.apps.googleusercontent.com",
+          "client_id": "920939972665-d36fkv4623ka7b36tlcf6glbvnmfdlm4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD3dE6R-gA8mO7j3r3vjZGtt5bPGUBaCA8"
+          "current_key": "AIzaSyCn7USlH3Jn9WCb8-nlndzrNvKwFk63eGM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "760024122181-pc7tipriclre3vdksh4kjf9k0d95cbpd.apps.googleusercontent.com",
+              "client_id": "920939972665-d36fkv4623ka7b36tlcf6glbvnmfdlm4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
